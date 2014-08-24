@@ -55,7 +55,7 @@ function Event:unRegisterEvent(event, eventId)
     return true
 end
 
-function Event:postEvent(event, ...)
+function Event:postModuleEvent(event, ...)
   self:execute(self.EventList[event], ...)
 end
 

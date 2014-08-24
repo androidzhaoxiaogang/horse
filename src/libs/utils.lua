@@ -18,8 +18,16 @@ function Utils:isEmptyStr(str)
 	return false
 end
 
+function Utils:printStackTrace(msg)
+    print("----------------------------------------")
+    print("LUA ERROR: " .. tostring(msg) .. "\n")
+    print(debug.traceback())
+    print("----------------------------------------")
+    return msg
+end
+
 ---------------------------
---@return # safe to excute a function.
+--@return # excute a function to catch the exception.
 function Utils:safeExecute(func)
     local function excute()
         return func[1](unpack(func, 2))

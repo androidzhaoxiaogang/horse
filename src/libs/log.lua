@@ -15,7 +15,7 @@ function Log:enableDebug(debug)
     debuggable = debug
 end
 
-__print = print
+local __print = print
 
 print = function(...)
     local trace = debug.traceback()

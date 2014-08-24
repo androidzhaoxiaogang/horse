@@ -9,10 +9,12 @@ BaseScene = BaseScene or class("BaseScene")
 
 local defaultsize = cc.Director:getInstance():getVisibleSize()
 
-function BaseScene:ctor()
+function BaseScene:ctor(sceneName)
     Log:i("====BaseScene:init====")
     
-    self.name = name
+    self.sceneName = sceneName
+    self.sceneObj = cc.Scene:create()
+    
     self.layerList = {}
 
     self.minWidthScale = 0
@@ -21,7 +23,9 @@ function BaseScene:ctor()
     self:setWidth(defaultsize.width)
     self:setHeight(defaultsize.height)
     
-    self.scene = cc.Scene:create()
+    
+    
+    UI:initScene(self.sceneName, self.sceneObj)
     
     --Ui:addLayer(name, self.scene)
 end
@@ -48,8 +52,8 @@ function BaseScene:setHeight(height)
         and self.minWidthScale or self.minHeightScale
 end
 
-function BaseScene:getScene()
-	return self.scene
+function BaseScene:getSceneObj()
+	return self.sceneObj
 end
 
 function BaseScene:createLayer(layerName)
