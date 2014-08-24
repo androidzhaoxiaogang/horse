@@ -15,9 +15,21 @@ function __G__TRACKBACK__(msg)
     return msg
 end
 
-gTargetPlatform = cc.Application:getInstance():getTargetPlatform()
-gWritable_path = cc.FileUtils:getInstance():getWritablePath()
+
 gVisibleSize = cc.Director:getInstance():getVisibleSize()
+
+local function mainLoop(dt)
+    local module = nil
+    function modulLoop()
+        module:OnLoop(delta)
+    end
+
+    module = GameManager
+    xpcall(modulLoop, __G__TRACKBACK__)
+
+    module = SceneManager
+    xpcall(modulLoop, __G__TRACKBACK__)
+end 
 
 local function main()
     collectgarbage("collect")
@@ -28,9 +40,12 @@ local function main()
     cc.FileUtils:getInstance():addSearchPath("src")
     cc.FileUtils:getInstance():addSearchPath("res")
 
+    CCDirector:getInstance():setDisplayStats(true)
+    CCDirector:getInstance():getScheduler():scheduleScriptFunc(MainLoop, 0, false)
 end
 
 local status, msg = xpcall(main, __G__TRACKBACK__)
+
 if not status then
     error(msg)
 end
