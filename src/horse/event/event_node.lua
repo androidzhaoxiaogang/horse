@@ -163,7 +163,7 @@ function EventNode:queryFromChild(func)
 
     for i = 1, self.childOrder do
         local child = self.childOrderList[i]
-        if child and child.postTreeMessage then
+        if child and child.postNodeEvent then
 
             func = child:getFunc(func)
             if func then
@@ -179,7 +179,7 @@ end
 --@return #void The messages be transferred 
 --         from parent to grandson in the internal
 --         module
-function EventNode:postTreeEvent(eventName, ...)
+function EventNode:postNodeEvent(eventName, ...)
     local func = eventName
     local funcs = self:queryFromChild(func)
 
