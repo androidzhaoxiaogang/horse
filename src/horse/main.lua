@@ -15,6 +15,8 @@ function __G__TRACKBACK__(msg)
     return msg
 end
 
+require("preload.lua")
+preloadScriptFile()
 
 gVisibleSize = cc.Director:getInstance():getVisibleSize()
 
