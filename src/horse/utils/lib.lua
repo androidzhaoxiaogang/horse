@@ -6,11 +6,11 @@
 -- Modify       :
 --=======================================================================
 
-Utils = Utils or {}
+Lib = Lib or {}
 
 ---------------------------
 --@return #boolean check if the string is an empty string.
-function Utils:isEmptyStr(str)
+function Lib:isEmptyStr(str)
 	if str == nil or str == "" then
 	   return true
 	end 
@@ -18,7 +18,7 @@ function Utils:isEmptyStr(str)
 	return false
 end
 
-function Utils:printStackTrace(msg)
+function Lib:printStackTrace(msg)
     print("----------------------------------------")
     print("LUA ERROR: " .. tostring(msg) .. "\n")
     print(debug.traceback())
@@ -28,7 +28,7 @@ end
 
 ---------------------------
 --@return # excute a function to catch the exception.
-function Utils:safeExecute(func)
+function Lib:safeExecute(func)
     local function excute()
         return func[1](unpack(func, 2))
     end
